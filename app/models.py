@@ -14,8 +14,8 @@ class Book(models.Model):
     ratings_3 = models.FloatField()
     ratings_4 = models.FloatField()
     ratings_5 = models.FloatField()
-    image_url = models.FloatField()
-    small_image_url = models.FloatField()
+    image_url = models.TextField()
+    small_image_url = models.TextField()
 
     def __str__(self):
         return self.title
