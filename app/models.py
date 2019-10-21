@@ -16,6 +16,8 @@ class Book(models.Model):
     ratings_5 = models.FloatField()
     image_url = models.TextField()
     small_image_url = models.TextField()
+    ratings = models.IntegerField(null=True)
+    ##ProcessedImageField(upload_to='capas', processors=[ResizeToFit(1280)], format='JPEG', options={'quality': 70})
 
     def __str__(self):
         return self.title

@@ -1,0 +1,27 @@
+{% load static %}
+{% load ratings %}
+<html>
+    <head>
+        <title>Recomendador de Livros</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='https://fonts.google.com/specimen/Oldenburg?selection.family=Oldenburg&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'css/star-ratings.css' %}">
+        <link rel="stylesheet" href="{% static 'css/app.css' %}">
+        <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+    </head>
+    <body>
+        <div class="page-header">
+            <a href="{% url 'rating_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+            <h1><a>Recomendador de Livros</a></h1>
+        </div>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                {% block content %}
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+</body>
+</html>

@@ -1,18 +1,13 @@
-<html>
-    <head>
-        <title>Recomendador de Livros</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Recomendador de Livros</a></h1>
+{% extends 'app/base.html' %}
+
+{% block content %}
+    {% for book in books %}
+         <div class="book">
+            <p>Autores: {{ book.authors }}</p>
+            <p>Ano: {{ book.year }}</p>
+            <h2><a>{{ book.title }}</a></h2>
+            <p>{{book.ratings}}</p>
+            <p>{{ book.text|linebreaksbr }}</p>
         </div>
-        {% for book in books %}
-             <div>
-                <p>authors: {{ book.authors }}</p>
-                <p>year: {{ book.year }}</p>
-                <h2><a href="">{{ book.title }}</a></h2>
-                <p>{{ book.text|linebreaksbr }}</p>
-            </div>
-        {% endfor %}
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
