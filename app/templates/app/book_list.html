@@ -1,13 +1,34 @@
 {% extends 'app/base.html' %}
 
 {% block content %}
+{{ sucesso }}
     {% for book in books %}
          <div class="book">
             <p>Autores: {{ book.authors }}</p>
             <p>Ano: {{ book.year }}</p>
-            <h2><a>{{ book.title }}</a></h2>
+            <h2>{{ book.title }}</h2>
             <p>{{book.ratings}}</p>
             <p>{{ book.text|linebreaksbr }}</p>
+             <form action="." method="POST">
+                 {% csrf_token %}
+                 {{ form.book_id.label }}
+                 <input type="text" value="{{ book.id }}" id="{{ form.book_id.id_for_label }}_{{ book.id }}" name="{{ form.book_id.name }}">
+                 {{ form.rating }}
+             </form>
         </div>
     {% endfor %}
+{% endblock %}
+
+{% block js %}
+<script>
+    $(document).ready(function() {
+    $('#id_book_id').hide();
+    });
+
+    $('#id_rating').on('change', function(e) {
+        e.preventDefault();
+        $('form').submit();
+    });
+</script>
+
 {% endblock %}

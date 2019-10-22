@@ -17,13 +17,7 @@ def save_book_from_row(book_row):
     book.title = book_row[3]
     book.average_rating = book_row[4]
     book.ratings_count = book_row[5]
-    book.ratings_1 = book_row[6]
-    book.ratings_2 = book_row[7]
-    book.ratings_3 = book_row[8]
-    book.ratings_4 = book_row[9]
-    book.ratings_5 = book_row[10]
     book.image_url = book_row[11]
-    book.small_image_url = book_row[12]
     book.save()
 
 if __name__ == "__main__":

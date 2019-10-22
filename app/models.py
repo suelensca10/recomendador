@@ -9,20 +9,12 @@ class Book(models.Model):
     title = models.CharField(max_length=500)
     average_rating = models.FloatField()
     ratings_count = models.FloatField()
-    ratings_1 = models.FloatField()
-    ratings_2 = models.FloatField()
-    ratings_3 = models.FloatField()
-    ratings_4 = models.FloatField()
-    ratings_5 = models.FloatField()
-    image_url = models.TextField()
-    small_image_url = models.TextField()
-    ratings = models.IntegerField(null=True)
-    ##ProcessedImageField(upload_to='capas', processors=[ResizeToFit(1280)], format='JPEG', options={'quality': 70})
+    image_url = models.CharField(max_length=1000)
 
     def __str__(self):
         return self.title
 
 class Rating(models.Model):
     user_id = models.IntegerField()
-    book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
     rating = models.IntegerField()
