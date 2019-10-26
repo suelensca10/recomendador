@@ -4,19 +4,23 @@
 {{ sucesso }}
     {% for book in books %}
          <div class="book">
-            <p>Autores: {{ book.authors }}</p>
-            <p>Ano: {{ book.year }}</p>
+            <img src='{{ book.image_file.url }}' class='img-fluid'/>
             <h2>{{ book.title }}</h2>
-            <p>{{book.ratings}}</p>
+            <p>{{ book.authors }}</p>
+            <p>Ano: {{ book.year }}</p>
             <p>{{ book.text|linebreaksbr }}</p>
-             <form action="." method="POST">
-                 {% csrf_token %}
+            <form action="." method="POST">
                  {{ form.book_id.label }}
+                 {% csrf_token %}
                  <input type="text" value="{{ book.id }}" id="{{ form.book_id.id_for_label }}_{{ book.id }}" name="{{ form.book_id.name }}">
                  {{ form.rating }}
-             </form>
+            </form>
         </div>
     {% endfor %}
+    <button type="submit" class="btn btn-primary">Buscar Recomendações</button>
+    <p>{{ linebreaksbr }}</p>
+    <p>{{ linebreaksbr }}</p>
+
 {% endblock %}
 
 {% block js %}
