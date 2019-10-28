@@ -10,8 +10,8 @@
         </div>
     {% for book in books %}
          <div class="book col-xs-12 col-md-3">
-            <img src='{{ book.image_url }}' class='img-fluid'/>
-            <h2>{{ book.title }}</h2>
+            <img src='{{ book.image_url }}' class='img-fluid' width="200" height="150"/>
+            <h4>{{ book.title }}</h4>
             <p>{{ book.authors }}</p>
             <p>Ano: {{ book.year }}</p>
             <p>{{ book.text|linebreaksbr }}</p>

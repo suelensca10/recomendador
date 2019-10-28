@@ -20,7 +20,7 @@ def save_book_from_row(book_row):
     book.image_url = book_row[11]
     book.save()
 
-    book.save_image_from_url()
+    #book.save_image_from_url()
 
 if __name__ == "__main__":
 

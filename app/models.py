@@ -14,7 +14,7 @@ class Book(models.Model):
     average_rating = models.FloatField()
     ratings_count = models.FloatField()
     image_url = models.URLField()
-    image_file = models.ImageField(upload_to='images/', null = True, blank=True)
+    #image_file = models.ImageField(upload_to='images/', null = True, blank=True)
 
    # def save_image_from_url(model):
    #     r = requests.get(model.image_url)
@@ -23,14 +23,15 @@ class Book(models.Model):
    #     img_temp.flush()
    #     model.image_file.save("image.jpg", File(img_temp), save=True)
 
-    def get_remote_image(self):
-        if self.image_url and not self.image_file:
-            result = urllib.urlretrieve(self.image_url)
-            self.image_file.save(
-                os.path.basename(self.image_url),
-                File(open(result[0]))
-            )
-            self.save()
+    #se for pra usar, é esse aqui
+    #def get_remote_image(self):
+    #    if self.image_url and not self.image_file:
+    #        result = urllib.urlretrieve(self.image_url)
+    #        self.image_file.save(
+    #            os.path.basename(self.image_url),
+    #            File(open(result[0]))
+    #        )
+    #        self.save()
 
     #def get_remote_image(self):
     #    if self.image_url and not self.image_file:

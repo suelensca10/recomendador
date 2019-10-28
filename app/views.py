@@ -13,7 +13,7 @@ def login(request):
 @login_required
 def book_list(request):
     if request.method == 'POST':
-        book_id = request.POST.get('book_id', None)
+        book_id = request.POST.get('book', None)
         rating = request.POST.get('rating', None)
 
         novo_rating = Rating()
@@ -22,7 +22,7 @@ def book_list(request):
         novo_rating.user_id = request.user.id
         novo_rating.save()
 
-    books = Book.objects.order_by('-average_rating').order_by('-ratings_count')[:25]
+    books = Book.objects.order_by('-average_rating').order_by('-ratings_count')[:200]
 
     return render(request, 'app/book_list.html', {
         'books': books,

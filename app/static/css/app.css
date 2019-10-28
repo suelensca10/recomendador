@@ -25,8 +25,18 @@
     margin-left: 40px;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3 {
     font-family: 'Oldenburg', cursive;
+}
+
+ h4 {
+    font-family: 'Oldenburg', cursive;
+    font-size: 14pt;
+}
+
+p {
+  -webkit-margin-before: 0.1em;
+  -webkit-margin-after: 0.1em;
 }
 
 .date {
@@ -39,6 +49,7 @@ h1, h2, h3, h4 {
 
 .book-form textarea, .book-form input {
     width: 100%;
+    height: 250px;
 }
 
 .top-menu, .top-menu:hover, .top-menu:visited {
@@ -50,6 +61,7 @@ h1, h2, h3, h4 {
 
 .book {
     margin-bottom: 70px;
+    height: 250px;
 }
 
 .book img {

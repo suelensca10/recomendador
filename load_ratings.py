@@ -10,7 +10,7 @@ from app.models import Rating, Book
 
 def get_book(rating_row):
     try:
-        Book.objects.get(id=rating_row[1])
+        Book.objects.get(book_id=rating_row[1])
         return True
     except Book.DoesNotExist:
         return False
@@ -18,7 +18,7 @@ def get_book(rating_row):
 def save_rating_from_row(rating_row):
     if get_book(rating_row):
         rating = Rating()
-        rating.book_id = Book.objects.get(id=rating_row[1]).id
+        rating.book_id = Book.objects.get(book_id=rating_row[1]).id
         rating.user_id = rating_row[0]
         rating.rating = rating_row[2]
         rating.save()
