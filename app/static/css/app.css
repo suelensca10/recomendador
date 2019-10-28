@@ -1,7 +1,18 @@
-.page-header {
+.navbar {
     background-color: #CC1836;
-    margin-top: 0;
-    padding: 20px 20px 20px 40px;
+    color: #fff;
+    /* margin-top: 0;
+    padding: 20px 20px 20px 40px; */
+}
+
+.navbar-brand, .dropdown-toggle,
+.navbar-brand:hover, .dropdown-toggle:hover {
+    color: #fff;    
+}
+
+.nav>li>a:focus, .nav>li>a:hover, .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background-color: transparent;
+    color: #fff;
 }
 
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
@@ -39,6 +50,10 @@ h1, h2, h3, h4 {
 
 .book {
     margin-bottom: 70px;
+}
+
+.book img {
+    width: 100px;
 }
 
 .book h2 a, .book h2 a:visited {

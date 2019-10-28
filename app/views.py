@@ -1,13 +1,16 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from .models import Book, Rating
-from .forms import RatingForm
 from django.urls import reverse_lazy
 from django.views import generic
+
+from .forms import RatingForm
+from .models import Book, Rating
 
 # Create your views here.
 def login(request):
     return render(request, 'app/login.html')
 
+@login_required
 def book_list(request):
     if request.method == 'POST':
         book_id = request.POST.get('book_id', None)
@@ -26,6 +29,7 @@ def book_list(request):
         'form': RatingForm()
     })
 
+@login_required
 def rating_new(request):
     form = RatingForm()
     return render(request, 'app/rating_edit.html', {'form': form})

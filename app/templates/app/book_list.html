@@ -2,36 +2,43 @@
 
 {% block content %}
 {{ sucesso }}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <button type="submit" class="btn btn-primary">Buscar Recomendações</button>
+            <br/><br/>
+        </div>
     {% for book in books %}
-         <div class="book">
-            <img src='{{ book.image_file.url }}' class='img-fluid'/>
+         <div class="book col-xs-12 col-md-3">
+            <img src='{{ book.image_url }}' class='img-fluid'/>
             <h2>{{ book.title }}</h2>
             <p>{{ book.authors }}</p>
             <p>Ano: {{ book.year }}</p>
             <p>{{ book.text|linebreaksbr }}</p>
             <form action="." method="POST">
-                 {{ form.book_id.label }}
                  {% csrf_token %}
-                 <input type="text" value="{{ book.id }}" id="{{ form.book_id.id_for_label }}_{{ book.id }}" name="{{ form.book_id.name }}">
+                 <input type="text" value="{{ book.id }}" id="{{ form.book.id_for_label }}_{{ book.id }}" name="{{ form.book.name }}">
+                 <!-- <select name="{{ form.rating.name }}" id="{{ form.rating.id_for_label }}_{{ book.id }}">
+                 {{ form.rating.options }}
+                 </select> -->
                  {{ form.rating }}
             </form>
         </div>
     {% endfor %}
-    <button type="submit" class="btn btn-primary">Buscar Recomendações</button>
-    <p>{{ linebreaksbr }}</p>
-    <p>{{ linebreaksbr }}</p>
-
+    </div>    
+</div>
 {% endblock %}
 
 {% block js %}
 <script>
     $(document).ready(function() {
-    $('#id_book_id').hide();
+        // esconde o campo de id dos livros
+        $('[id^="id_book_"]').hide();
     });
 
-    $('#id_rating').on('change', function(e) {
+    $('form').on('change', function(e) {
         e.preventDefault();
-        $('form').submit();
+        $(this).submit();
     });
 </script>
 

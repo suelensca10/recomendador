@@ -4,7 +4,7 @@ from django.core.files import File
 import os
 from urllib.request import urlopen
 from django.core.files.temp import NamedTemporaryFile
-import requests
+#import requests
 
 class Book(models.Model):
     book_id = models.IntegerField()

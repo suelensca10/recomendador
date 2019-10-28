@@ -6,9 +6,7 @@ class RatingForm(forms.ModelForm):
 
     class Meta:
         model = Rating
-        fields = ('book_id', 'rating',)
-
-    book_id = forms.IntegerField()
+        fields = ('book', 'rating',)
 
     rating = forms.ChoiceField(
         choices=(
