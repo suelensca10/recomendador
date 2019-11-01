@@ -7,7 +7,7 @@ from django.core.files.temp import NamedTemporaryFile
 #import requests
 
 class Book(models.Model):
-    book_id = models.IntegerField()
+    book = models.IntegerField()
     authors = models.CharField (max_length=500)
     year = models.IntegerField()
     title = models.CharField(max_length=500)
