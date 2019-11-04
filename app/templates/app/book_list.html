@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <a class="btn btn-info pull-right" href="{% url 'result' %}">Encontrar Recomendações </a>
+            <a class="btn btn-info pull-right" href="{% url 'result' %}">Encontrar Recomendações</a>
             <br/><br/>
         </div>
     {% for book in books %}
@@ -13,7 +13,7 @@
             <img src='{{ book.image_url }}' class='img-fluid' width="200" height="150"/>
             <h4>{{ book.title }}</h4>
             <p>{{ book.authors }}</p>
-            <p>Ano: {{ book.year }}</p>
+            <p>{{ book.year }}</p>
             <p>{{ book.text|linebreaksbr }}</p>
             <form action="." method="POST">
                  {% csrf_token %}
