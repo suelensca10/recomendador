@@ -31,11 +31,3 @@ class Rating(models.Model):
     rating = models.IntegerField()
 
     objects = DataFrameManager()
-
-class PivotData(models.Model):
-    row_col_a = models.CharField(max_length=15)
-    row_col_b = models.CharField(max_length=15)
-    row_col_c = models.CharField(max_length=15)
-    value_col_d = models.FloatField()
-    value_col_e = models.FloatField()
-    value_col_f = models.FloatField()
