@@ -7,8 +7,15 @@
             <h2>Recomendado para você</h2>
             <br/><br/>
         </div>
-        <p>Hello World!</p>
-        <p>{{ recomendations }}</p>
+        {% for recomendation in recomendations %}
+            <div class="book col-xs-12 col-md-3">
+                <img src='{{ recomendation.image_url }}' class='img-fluid' width="200" height="150"/>
+                <h4>{{ recomendation.title }}</h4>
+                <p>{{ recomendation.authors }}</p>
+                <p>{{ recomendation.year }}</p>
+                <p>{{ recomendation.text|linebreaksbr }}</p>
+            </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

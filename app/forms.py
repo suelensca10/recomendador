@@ -10,6 +10,7 @@ class RatingForm(forms.ModelForm):
 
     rating = forms.ChoiceField(
         choices=(
+            ('0', '-'),
             ('1', '1'),
             ('2', '2'),
             ('3', '3'),
