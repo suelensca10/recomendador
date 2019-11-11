@@ -25,7 +25,8 @@ def book_list(request):
         novo_rating.user_id = request.user.id
         novo_rating.save()
 
-    books = Book.objects.order_by('-average_rating').order_by('-ratings_count')[:200]
+    #books = Book.objects.order_by('-average_rating').order_by('-ratings_count')[:200]
+    books = Book.objects.order_by('-average_rating').order_by('-ratings_count')[:333]
 
     return render(request, 'app/book_list.html', {
         'books': books,
@@ -76,7 +77,7 @@ def result(request):
 
     #cria querysets de todos os registros das tabelas book e rating
     qs_Books = Book.objects.all()
-    qs_Ratings1 = Rating.objects.values('user_id','book','rating').order_by('-user_id')[:444]
+    qs_Ratings1 = Rating.objects.values('user_id','book','rating').order_by('user_id')[:500]
     qs_Ratings2 = Rating.objects.values('user_id', 'book', 'rating').order_by('-rating')[:666]
     qs_Ratings_usu_atual = Rating.objects.values('user_id', 'book', 'rating').filter(user_id=curr_user_id)
 
@@ -110,7 +111,10 @@ def result(request):
     # substitui nulls por zero
     most_rated_books = most_rated_books.fillna(0)
 
-    kmeans = KMeans(n_clusters=5, init='k-means++')
+    #retira os livros chatos do dataframe
+   # most_rated_books.drop([''], axis=1)
+
+    kmeans = KMeans(n_clusters=6, init='k-means++')
     kmeans.fit(most_rated_books);
 
     # prediz em qual cluster cada usuário está inserido
@@ -135,7 +139,7 @@ def result(request):
     avg_ratings.columns = ['mean_rate']
 
     # Ordena pela pontuação de maneira decrescente (as maiores ratings ficam por cima)
-    avg_ratings = avg_ratings.sort_values(by='mean_rate', ascending=False)[:10]
+    avg_ratings = avg_ratings.sort_values(by='mean_rate', ascending=False)[:12]
 
     # retorna só os títulos dos livros - cria um novo dataframe com od indexes
     recomendations = avg_ratings.index
