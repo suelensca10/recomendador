@@ -7,7 +7,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4"></div>
-    <div class="col-xs-12 col-md-4 text-center">
+    <div class="col-xs-12 col-md-4 text-center box-login center">
       <h3>Entre com seu usuário e senha</h3>
       <form class="login" method="POST"> 
         {% csrf_token %}
@@ -22,6 +22,14 @@
     <div class="col-xs-12 col-md-4"></div>
   </div>
 </div>
+
+<style>
+body {
+  background-image: url('../../static/images/books.jpg');
+  background-size: cover;
+  backdrop-filter: blur(5px);
+}
+</style>
 
 {% endblock %}
 

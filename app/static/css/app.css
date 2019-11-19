@@ -25,8 +25,12 @@
     margin-left: 40px;
 }
 
-h1, h2, h3 {
+h1, h2 {
     font-family: 'Oldenburg', cursive;
+}
+
+h3 {
+    font-family: 'Open Sans';
 }
 
  h4 {
@@ -85,4 +89,17 @@ p {
 .btn-warning {
    color: white;
    font-size: 120%;
+}
+
+
+.box-login {
+    background-color: rgba(255, 255, 255, .6);
+    padding: 8px 15px;
+    border-radius: 10px;
+}
+.center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
 }
