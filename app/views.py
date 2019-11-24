@@ -1,5 +1,8 @@
+import json
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.urls import reverse
+from django.http import HttpResponse
 from sklearn.cluster import KMeans
 import pandas as pd
 #import helper
@@ -16,14 +19,19 @@ def login(request):
 @login_required
 def book_list(request):
     if request.method == 'POST':
-        book = request.POST.get('book', None)
-        rating = request.POST.get('rating', None)
+        ratings = request.POST.get('ratings')
+        ratings = json.loads(ratings)
+        for rate in ratings:
+            book = int(rate['book'])
+            rating = int(rate['rating'])
 
-        novo_rating = Rating()
-        novo_rating.book = Book.objects.get(pk=book)
-        novo_rating.rating = rating
-        novo_rating.user_id = request.user.id
-        novo_rating.save()
+            novo_rating = Rating()
+            novo_rating.book = Book.objects.get(pk=book)
+            novo_rating.rating = rating
+            novo_rating.user_id = request.user.id
+            novo_rating.save()
+        return HttpResponse("Ok")
+            
 
     #books = Book.objects.order_by('-average_rating').order_by('-ratings_count')[:200]
     books = Book.objects.order_by('-average_rating').order_by('-ratings_count')[:333]
@@ -69,7 +77,7 @@ def result(request):
     # substitui nulls por zero
     user_book_ratings = user_book_ratings.fillna(0)
     kmeans = KMeans(n_clusters=6, init='k-means++')
-    kmeans.fit(user_book_ratings);
+    kmeans.fit(user_book_ratings)
 
     # Cria uma coluna com o cluster correspondente a cada usuário
     user_book_ratings['cluster'] = kmeans.labels_

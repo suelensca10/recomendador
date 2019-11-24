@@ -6,7 +6,8 @@
     <div class="row">
         <div class="col-xs-12">
             <!--<a class="btn btn-info pull-right" href="{% url 'result' %}">Encontrar Recomendações</a-->
-            <a class="btn btn-info" href="{% url 'result' %}">Buscar Recomendações</a>
+            <!-- <a class="btn btn-info" href="{% url 'result' %}">Buscar Recomendações</a> -->
+            <a class="btn btn-info" id="buscar" href="#">Buscar Recomendações</a>
             <br/><br/>
         </div>
     {% for book in books %}
@@ -18,7 +19,7 @@
             <p>{{ book.text|linebreaksbr }}</p>
             <form action="." method="POST">
                  {% csrf_token %}
-                 <input type="text" value="{{ book.id }}" id="{{ form.book.id_for_label }}_{{ book.id }}" name="{{ form.book.name }}">
+                 <input type="text" value="{{ book.id }}" id="{{ form.book.id_for_label }}_{{ book.id }}" name="{{ form.book.name }}_{{ book.id }}">
                  <!-- <select name="{{ form.rating.name }}" id="{{ form.rating.id_for_label }}_{{ book.id }}">
                  {{ form.rating.options }}
                  </select> -->
@@ -37,10 +38,35 @@
         $('[id^="id_book_"]').hide();
     });
 
-    $('form').on('change', function(e) {
+    // $('form').on('change', function(e) {
+    //     e.preventDefault();
+    //     $(this).submit();
+    // });
+
+    $('#buscar').on('click', function(e) {
         e.preventDefault();
-        $(this).submit();
-    });
+        $('#buscar').html('Aguarde, calculando recomendações...');
+        var ratings = [];
+        $('select[name="rating"]').each(function() {
+            if ($(this).val() != '0') {
+                ratings.push({
+                    'book': $(this).prev().val(),
+                    'rating': $(this).val()
+                })
+            }
+        });
+
+        $.ajax({
+            method: 'POST',
+            data : {
+                csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
+                ratings: JSON.stringify(ratings)
+            },
+            url: '/'            
+        }).done(function(response) {
+            window.location.href = '/result/';
+        })
+    })
 </script>
 
 {% endblock %}
